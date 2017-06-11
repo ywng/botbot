@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 public class CrawlerController {
 
+    @RequestMapping("/")
+    public String hello() {
+        return "Hello World";
+    }
+
     @RequestMapping("/getStockPrice/{sid}")
     public double getStockPrice( @PathVariable("sid") String sid ) {
         double price = 0.0;
