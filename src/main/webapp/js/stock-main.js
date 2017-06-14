@@ -129,8 +129,8 @@ svg.append('g')
 	.call(legendOrdinal);
 
 let sizeScale = d3.scaleOrdinal()
-	.domain(['smaller marker value', 'larger marker value'])
-	.range([5, 10] );
+	.domain(['smaller marker value', '...', 'larger marker value'])
+	.range([5, 9, 15] );
 
 let legendSize = d3.legendSize()
 	.scale(sizeScale)
