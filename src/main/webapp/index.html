@@ -65,6 +65,10 @@
         }
     }
 
+    .node-price {
+        font-weight:bold;
+    }
+
 
 </style>
 
@@ -86,8 +90,8 @@
 
         setInterval(function() {
             retrievalTask();
+            redraw();
         }, 60000);//every 1 mins
-
 
     });
 
@@ -107,9 +111,7 @@
 
         console.log("# stock holdings: " + stockHoldings.length);
         console.log("# stock holdings details retrieved: " + stockHoldingsDetails.length);
-
-        redraw();
-
+        localStorage.setItem("stockHoldingsDetails", JSON.stringify(stockHoldingsDetails));
     }
 
     function updateStockData(stockDetails){
@@ -126,10 +128,7 @@
         if (!found) {
             stockHoldingsDetails[stockHoldingsDetails.length] = stockDetails;
         }
-
     }
-
-
 
 </script>
 
