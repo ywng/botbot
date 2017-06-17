@@ -7,7 +7,6 @@
     <title>Portfolio Dashboard</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 
 <body class="">
@@ -78,8 +77,61 @@
 <script src="js/d3-legend.min.js"></script>
 <script src="data/stock-data.js"></script>
 <script src="js/stock-main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
+<script>
+    $(document).ready(function(){
+        retrievalTask();
+
+        setInterval(function() {
+            retrievalTask();
+        }, 60000);//every 1 mins
+
+
+    });
+
+    function retrievalTask() {
+        for (var i = 0 ; i < stockHoldings.length; i++){
+            $.ajax({
+                type: "post",
+                url: "/getStockPrice",
+                data: "[" + JSON.stringify(stockHoldings[i]) + "]",
+                contentType: "application/json",
+                success: function(stockDetailsList){
+                    console.log("Retrieved info for stock: " + stockDetailsList[0].name);
+                    updateStockData(stockDetailsList[0]);
+                }
+            });
+        }
+
+        console.log("# stock holdings: " + stockHoldings.length);
+        console.log("# stock holdings details retrieved: " + stockHoldingsDetails.length);
+
+        redraw();
+
+    }
+
+    function updateStockData(stockDetails){
+        if (stockDetails.name === "To be fetching"){
+            return;
+        }
+        var found = false;
+        for (var i = 0 ; i < stockHoldingsDetails.length; i++) {
+            if (stockHoldingsDetails[i].stockHolding.code === stockDetails.stockHolding.code) {
+                stockHoldingsDetails[i] = stockDetails;
+                found = true;
+            }
+        }
+        if (!found) {
+            stockHoldingsDetails[stockHoldingsDetails.length] = stockDetails;
+        }
+
+    }
+
+
+
+</script>
 
 
 </body>
