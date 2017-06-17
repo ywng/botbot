@@ -285,12 +285,12 @@ function draw() {
 
 function redraw() {
     console.log("Redrawing svg graph ...");
+    
+    simulation.alpha(1).restart();
 
     simulateSetup();
     svg.selectAll('.legend-color').remove();
     svg.selectAll('.legend-size').remove();
     svg.selectAll('.node').remove();
     draw();
-
-    simulation.alpha(1).restart();
 }
