@@ -24,7 +24,6 @@ var root;
 var nodes;
 var node;
 
-svg.style('background-color', '#eee');
 if (localStorage.getItem("stockHoldingsDetails") !== null) {
     stockHoldingsDetails = JSON.parse(localStorage.getItem("stockHoldingsDetails"));
 }

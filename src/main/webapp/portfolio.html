@@ -1,34 +1,29 @@
+<!DOCTYPE html>
+<html>
 
-<!doctype html>
-<html class="no-js" lang="en">
 <head>
+
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Portfolio Dashboard</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Portfolio</title>
+
+    <!-- Core CSS - Include with every page -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+
+    <!-- SB Admin CSS - Include with every page -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/bootstrap-switch.css" rel="stylesheet">
+
 </head>
-
-<body class="">
-
+<body>
 <style>
-    html, body {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: Helvetica, Calibri, Roboto, Open Sans, sans-serif
-        -webkit-backface-visibility: hidden;
-    }
-    * {
-        box-sizing: inherit;
-    }
-    h1 {
-        text-align: center;
-    }
-    svg {
-        margin:auto;
-        display:block;
-    }
+
 
     .circle-overlay {
         font-size: 16px;
@@ -53,27 +48,31 @@
     .legend-size circle {
         fill: rgb(128,128,128);
     }
-
-    .stock-container {
-        padding: 1rem 2rem;
-        position: relative;
+    .legend-size .label, .legend-color .label {
+        font-family: Helvetica, Calibri, Roboto, Open Sans, sans-serif;
+        font-weight: normal;
     }
-
-    @media screen and (min-width: 992px) {
-        .stock-container {
-            padding: 1rem 5rem;
-        }
-    }
-
     .node-price {
         font-weight:bold;
     }
 
 
 </style>
+</body>
 
-<div class="stock-container">
-    <svg id="stock-svg" width="100%" height="700" font-family="sans-serif" font-size="10" text-anchor="middle"/>
+<div id="wrapper">
+
+    <div id="nav_bar">
+        <!-- /html of the top & side nav bar is loaded when document ready -->
+    </div>
+
+    <div id="page-wrapper">
+
+        <div class="stock-container">
+            <svg id="stock-svg" width="100%" height="700" font-family="sans-serif" font-size="10" text-anchor="middle" enable-background="white"/>
+        </div>
+
+    </div>
 
 </div>
 
@@ -81,11 +80,23 @@
 <script src="js/d3-legend.min.js"></script>
 <script src="data/stock-data.js"></script>
 <script src="js/stock-main.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<!-- Core Scripts - Include with every page -->
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+<!-- SB Admin Scripts - Include with every page -->
+<script src="js/sb-admin.js"></script>
+<script src="js/helper.js"></script>
+<script src="js/calls.ajax.js"></script>
 
 <script>
+
     $(document).ready(function(){
+        //load common side bar & init the side bar by callback function
+        $('#nav_bar').load("views/nav.html",sideBarInit);
+
         retrievalTask();
 
         setInterval(function() {

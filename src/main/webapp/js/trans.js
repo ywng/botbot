@@ -1,34 +1,5 @@
 var stockname="";
 
-$(document).ready(function() {
-    //load common side bar & init the side bar by callback function
-    $('#nav_bar').load("nav.html",sideBarInit);
-    checkRedirectNeeded();
-
-    addTransactionsOperationInit();
-    transDataTableInit();
-
-    $("#checkAll").click(function () {
-        $(".transCheckBox").prop('checked',$(this).prop('checked'));
-    }); 
-
-   $(".transCheckBox").click(function(){
-        if (!$(this).prop('checked')){ // if not check a single box
-             $("#checkAll").prop('checked',false); // then select all will be not selected
-        }else{                         //if that check box is checked, need to check whether all are checked
-            $("#checkAll").prop('checked',true);
-            $(".transCheckBox").each(function(){
-                if (!$(this).prop('checked')){
-                    $("#checkAll").prop('checked',false);
-                }
-            });
-        }
-        
-    });
-
-    checkRedirectNeeded();
-});
-
 /*
  * Transactions DataTable Related
  */
