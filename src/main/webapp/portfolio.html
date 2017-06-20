@@ -21,7 +21,7 @@
     <link href="css/bootstrap-switch.css" rel="stylesheet">
 
 </head>
-<body>
+
 <style>
 
 
@@ -51,15 +51,18 @@
     .legend-size .label, .legend-color .label {
         font-family: Helvetica, Calibri, Roboto, Open Sans, sans-serif;
         font-weight: normal;
-        font-size: 100%;
+        font-size: 90%;
     }
     .node-price {
         font-weight:bold;
     }
+    body {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
 
 
 </style>
-</body>
 
 <div id="wrapper">
 
@@ -70,7 +73,7 @@
     <div id="page-wrapper">
 
         <div class="stock-container">
-            <svg id="stock-svg" width="100%" height="700" font-family="sans-serif" font-size="10" text-anchor="middle" enable-background="white"/>
+            <svg id="stock-svg" width="100%" height="700" font-family="sans-serif" font-size="10" text-anchor="middle"/>
         </div>
 
     </div>
@@ -80,7 +83,7 @@
 <script src="js/d3.min.js"></script>
 <script src="js/d3-legend.min.js"></script>
 <script src="data/stock-data.js"></script>
-<script src="js/stock-main.js"></script>
+<script src="js/portfolio.js"></script>
 
 <!-- Core Scripts - Include with every page -->
 <script src="js/jquery-1.10.2.js"></script>

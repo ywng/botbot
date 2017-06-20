@@ -1,9 +1,9 @@
 var svg = d3.select('#stock-svg');
 var width = svg.property('clientWidth');
 var height = +svg.attr('height');
-var centerX = width * 0.5;
-var centerY = height * 0.5;
-var strength = 0.015;
+var centerX = width * 0.55;
+var centerY = height * 0.55;
+var strength = 0.1;
 var focusedNode;
 var format = d3.format(',d');
 var percentChangeFormat = d3.format('+');
