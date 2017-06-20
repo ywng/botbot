@@ -1,0 +1,137 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Portfolio Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class="">
+
+<style>
+    html, body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Helvetica, Calibri, Roboto, Open Sans, sans-serif
+        -webkit-backface-visibility: hidden;
+    }
+    * {
+        box-sizing: inherit;
+    }
+    h1 {
+        text-align: center;
+    }
+    svg {
+        margin:auto;
+        display:block;
+    }
+
+    .circle-overlay {
+        font-size: 16px;
+        border-radius: 50%;
+        position: absolute;
+        overflow: hidden;
+        /*it's buggy with the foreignObject background right now*/
+        /*background-color: rgba(255,255,255,0.5);*/
+    }
+    .circle-overlay__inner {
+        text-align: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
+    .node-icon--faded {
+        opacity: 0.5;
+    }
+    .legend-size circle {
+        fill: rgb(128,128,128);
+    }
+
+    .stock-container {
+        padding: 1rem 2rem;
+        position: relative;
+    }
+
+    @media screen and (min-width: 992px) {
+        .stock-container {
+            padding: 1rem 5rem;
+        }
+    }
+
+    .node-price {
+        font-weight:bold;
+    }
+
+
+</style>
+
+<div class="stock-container">
+    <svg id="stock-svg" width="100%" height="700" font-family="sans-serif" font-size="10" text-anchor="middle"/>
+
+</div>
+
+<script src="js/d3.min.js"></script>
+<script src="js/d3-legend.min.js"></script>
+<script src="data/stock-data.js"></script>
+<script src="js/stock-main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script>
+    $(document).ready(function(){
+        retrievalTask();
+
+        setInterval(function() {
+            retrievalTask();
+            redraw();
+        }, 60000);//every 1 mins
+
+    });
+
+    function retrievalTask() {
+        for (var i = 0 ; i < stockHoldings.length; i++){
+            $.ajax({
+                type: "post",
+                url: "/getStockPrice",
+                data: "[" + JSON.stringify(stockHoldings[i]) + "]",
+                contentType: "application/json",
+                success: function(stockDetailsList){
+                    console.log("Retrieved info for stock: " + stockDetailsList[0].name);
+                    updateStockData(stockDetailsList[0]);
+                }
+            });
+        }
+
+        console.log("# stock holdings: " + stockHoldings.length);
+        console.log("# stock holdings details retrieved: " + stockHoldingsDetails.length);
+        localStorage.setItem("stockHoldingsDetails", JSON.stringify(stockHoldingsDetails));
+    }
+
+    function updateStockData(stockDetails){
+        if (stockDetails.name === "To be fetching"){
+            return;
+        }
+        var found = false;
+        for (var i = 0 ; i < stockHoldingsDetails.length; i++) {
+            if (stockHoldingsDetails[i].stockHolding.code === stockDetails.stockHolding.code) {
+                stockHoldingsDetails[i] = stockDetails;
+                found = true;
+            }
+        }
+        if (!found) {
+            stockHoldingsDetails[stockHoldingsDetails.length] = stockDetails;
+        }
+    }
+
+</script>
+
+
+</body>
+</html>

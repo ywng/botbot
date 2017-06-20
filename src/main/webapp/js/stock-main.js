@@ -3,7 +3,7 @@ var width = svg.property('clientWidth');
 var height = +svg.attr('height');
 var centerX = width * 0.5;
 var centerY = height * 0.5;
-var strength = 0.1;
+var strength = 0.015;
 var focusedNode;
 var format = d3.format(',d');
 var percentChangeFormat = d3.format('+');
@@ -30,6 +30,22 @@ if (localStorage.getItem("stockHoldingsDetails") !== null) {
 }
 simulateSetup();
 draw();
+
+// legend 2
+var sizeScale = d3.scaleOrdinal()
+    .domain(['smaller market value', '...', 'larger market value'])
+    .range([3, 7, 11] );
+var legendSize = d3.legendSize()
+    .scale(sizeScale)
+    .shape('circle')
+    .shapePadding(10)
+    .labelAlign('end');
+svg.append('g')
+    .classed('legend-size', true)
+    .attr('text-anchor', 'start')
+    .attr('transform', 'translate(150, 25)')
+    .style('font-size', '12px')
+    .call(legendSize);
 
 // blur
 d3.select(document).on('click', () => {
@@ -64,6 +80,12 @@ d3.select(document).on('click', () => {
 
 //================= functions ====================================//
 
+function ticked() {
+    node.attr('transform', d => `translate(${d.x},${d.y})`)
+.select('circle')
+        .attr('r', d => d.r);
+}
+
 function simulateSetup(){
     root = d3.hierarchy({ children: stockHoldingsDetails}).sum(d => d.mktVal);
 
@@ -72,8 +94,8 @@ function simulateSetup(){
     nodes = pack(root).leaves().map(node => {
     	const data = node.data;
 		return {
-			x: centerX + (node.x - centerX) * 3, // magnify start position to have transition to center movement
-			y: centerY + (node.y - centerY) * 3,
+			x: node.x,
+			y: node.y,
 			r: 0, // for tweening
 			radius: node.r, //original radius
 			id: data.stockHolding.code,
@@ -87,12 +109,6 @@ function simulateSetup(){
 	});
 
     simulation.nodes(nodes).on('tick', ticked);
-}
-
-function ticked() {
-    node.attr('transform', d => `translate(${d.x},${d.y})`)
-		.select('circle')
-        .attr('r', d => d.r);
 }
 
 function draw() {
@@ -183,22 +199,6 @@ function draw() {
         .attr('transform', 'translate(20,30)')
         .style('font-size', '12px')
         .call(legendOrdinal);
-    var sizeScale = d3.scaleOrdinal()
-        .domain(['smaller marker value', '...', 'larger marker value'])
-        .range([3, 7, 11] );
-    var legendSize = d3.legendSize()
-        .scale(sizeScale)
-        .shape('circle')
-        .shapePadding(10)
-        .labelAlign('end');
-
-    // legend 2
-    svg.append('g')
-        .classed('legend-size', true)
-        .attr('text-anchor', 'start')
-        .attr('transform', 'translate(150, 25)')
-        .style('font-size', '12px')
-        .call(legendSize);
 
     var infoBox = node.append('foreignObject')
         .classed('circle-overlay hidden', true)
@@ -285,12 +285,11 @@ function draw() {
 
 function redraw() {
     console.log("Redrawing svg graph ...");
-    
+
     simulation.alpha(1).restart();
 
     simulateSetup();
     svg.selectAll('.legend-color').remove();
-    svg.selectAll('.legend-size').remove();
     svg.selectAll('.node').remove();
     draw();
 }
