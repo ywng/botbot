@@ -171,7 +171,7 @@ function updatePortfolioIndustryMktVal(){
     }
 
     var mktValEntry = {};
-    mktValEntry.time = new Date().toLocaleString();
+    mktValEntry.time = getFormattedDate();
     mktValEntry.totalMktVal = totalMktVal;
     mktValEntry.industryMktValMap = industryMktValMap;
     mktValOverTime.push(mktValEntry);
