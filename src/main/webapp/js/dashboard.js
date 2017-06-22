@@ -133,7 +133,7 @@ function drawIndustryMktValDonutChart(){
 
 function updatePortfolioIndustryMktVal(){
     if (localStorage.getItem("stockHoldingsDetails") !== null) {
-        stockHoldingsDetails = JSON.parse(localStorage.getItem("stockHoldingsDetails"));
+        var stockHoldingsDetailsStored = JSON.parse(localStorage.getItem("stockHoldingsDetails"));
     } else {
         return; //do nothing
     }
@@ -146,15 +146,15 @@ function updatePortfolioIndustryMktVal(){
 
     var industryMktValMap = new Map();
     var totalMktVal = 0;
-    for (var i=0; i<stockHoldingsDetails.length; i++) {
-        var industry = stockHoldingsDetails[i].stockHolding.cat;
+    for (var i=0; i<stockHoldingsDetailsStored.length; i++) {
+        var industry = stockHoldingsDetailsStored[i].stockHolding.cat;
         if(industryMktValMap.get(industry) === undefined) {
-            industryMktValMap.set(industry, stockHoldingsDetails[i].mktVal);
+            industryMktValMap.set(industry, stockHoldingsDetailsStored[i].mktVal);
         } else {
-            industryMktValMap.set(industry, stockHoldingsDetails[i].mktVal + industryMktValMap.get(industry));
+            industryMktValMap.set(industry, stockHoldingsDetailsStored[i].mktVal + industryMktValMap.get(industry));
         }
 
-        totalMktVal = totalMktVal + stockHoldingsDetails[i].mktVal;
+        totalMktVal = totalMktVal + stockHoldingsDetailsStored[i].mktVal;
     }
 
     industryMktValDataList = [];
