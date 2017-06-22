@@ -45,6 +45,8 @@ $(function() {
         resize: true
     });
 
+    retrievalTask();
+    updatePortfolioIndustryMktVal();
     drawIndustryMktValDonutChart();
     drawTotalMktValChart();
 
@@ -134,6 +136,9 @@ function drawIndustryMktValDonutChart(){
 function updatePortfolioIndustryMktVal(){
     if (localStorage.getItem("stockHoldingsDetails") !== null) {
         var stockHoldingsDetailsStored = JSON.parse(localStorage.getItem("stockHoldingsDetails"));
+        if (stockHoldings.length !== stockHoldingsDetailsStored.length) {
+            return;
+        }
     } else {
         return; //do nothing
     }
