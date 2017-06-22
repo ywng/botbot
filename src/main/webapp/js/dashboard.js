@@ -5,7 +5,7 @@ var mktValOverTime;
 var industryMktValDataList;
 
 $(function() {
-    reduceLocalStorageByRemovingOldData();
+    init();
 
     Morris.Bar({
         element: 'morris-bar-chart',

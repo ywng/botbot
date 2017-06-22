@@ -228,6 +228,7 @@
     <script src="js/plugins/dataTables/jquery.jeditable.js"></script>
 
     <!-- SB Admin Scripts - Include with every page -->
+    <script src="js/d3.min.js"></script>
     <script src="js/sb-admin.js"></script>
     <script src="js/helper.js"></script>
     <script src="js/calls.ajax.js"></script>
@@ -240,8 +241,7 @@
 
     <script>
         $(document).ready(function() {
-            //load common side bar & init the side bar by callback function
-            $('#nav_bar').load("views/nav.html",sideBarInit);
+            init();
             //  checkRedirectNeeded();
 
             //  addTransactionsOperationInit();
