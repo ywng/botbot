@@ -89,6 +89,8 @@ function drawTotalMktValChart(){
                 pointSize: 0,
                 preUnits: '$',
                 hideHover: 'auto',
+                ymax: 'auto',
+                ymin: 'auto',
                 resize: true,
                 behaveLikeLine: true,
                 lineColors:['#8BB3E0']
