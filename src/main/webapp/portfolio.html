@@ -98,6 +98,13 @@
         //load common side bar & init the side bar by callback function
         init();
 
+        //remove stockHoldingDetails no longer in Portfolio
+        for (var i = 0 ; i < stockHoldingsDetails.length; i++) {
+            if (!isInPortfolio(stockHoldingsDetails[i].stockHolding.code)){
+                stockHoldingsDetails.remove(i);
+            }
+        }
+
         retrievalTask();
 
         setInterval(function() {
@@ -123,7 +130,9 @@
 
         console.log("# stock holdings: " + stockHoldings.length);
         console.log("# stock holdings details retrieved: " + stockHoldingsDetails.length);
-        localStorage.setItem("stockHoldingsDetails", JSON.stringify(stockHoldingsDetails));
+        if(stockHoldingsDetails.length === stockHoldings.length) {
+            localStorage.setItem("stockHoldingsDetails", JSON.stringify(stockHoldingsDetails));
+        }
     }
 
     function updateStockData(stockDetails){
@@ -140,6 +149,16 @@
         if (!found) {
             stockHoldingsDetails[stockHoldingsDetails.length] = stockDetails;
         }
+    }
+
+    function isInPortfolio(stockCode){
+        for (var i = 0 ; i < stockHoldings.length; i++){
+            if(stockHoldings[i].code === stockCode){
+                return true;
+            }
+        }
+
+        return false;
     }
 
 </script>
