@@ -101,7 +101,7 @@
         //remove stockHoldingDetails no longer in Portfolio
         for (var i = 0 ; i < stockHoldingsDetails.length; i++) {
             if (!isInPortfolio(stockHoldingsDetails[i].stockHolding.code)){
-                stockHoldingsDetails.remove(i);
+                stockHoldingsDetails.splice(i,1);
             }
         }
 
