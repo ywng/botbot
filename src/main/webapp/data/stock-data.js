@@ -110,11 +110,6 @@ let stockHoldings = [
         "quant": 4000
     },
     {
-        "cat": "Insurance",
-        "code": "02601",
-        "quant": 1200
-    },
-    {
         "cat": "Coal",
         "code": "01088",
         "quant": 2000
@@ -126,6 +121,7 @@ let stockHoldings = [
     }
 
 ];
+
 let stockHoldingsDetails = [
     {
         desc: "descript testing",
