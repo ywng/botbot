@@ -25,14 +25,9 @@ let stockHoldings = [
         "quant": 18000
     },
     {
-        "cat": "Medical",
-        "code": "01681",
-        "quant": 9000
-    },
-    {
         "cat": "Utilities",
         "code": "00902",
-        "quant": 10000
+        "quant": 6000
     },
     {
         "cat": "Utilities",
@@ -103,21 +98,6 @@ let stockHoldings = [
         "cat": "Real Estate",
         "code": "00405",
         "quant": 8000
-    },
-    {
-        "cat": "Insurance",
-        "code": "02328",
-        "quant": 4000
-    },
-    {
-        "cat": "Coal",
-        "code": "01088",
-        "quant": 2000
-    },
-    {
-        "cat": "Inv & Assest Management",
-        "code": "01359",
-        "quant": 13000
     }
 
 ];
