@@ -1,2 +1,10 @@
 # botbot
-A bot simple enough to serve you... My Master!
+A bot for stock and financial stuff. (development in progress) 
+Currently it has no backend stoage yet, using HTML5 Browser session to do persistent storage for some experiementing ideas...
+
+1. Portfolio Vis
+Portfolio Breakdown and Grouping
+
+
+
+
