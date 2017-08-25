@@ -8,6 +8,6 @@ Currently it has no backend stoage yet, using HTML5 Browser session to do persis
 ![alt text](./screenshots/portVis.png)
 #### Real-time Portfolio Value Monitoring (updates/min)
 ![alt text](./screenshots/portValueLineChart.png)
-![alt text](./screenshots/portValueDonutChartByIndustry.png=250x)
+![alt text](./screenshots/portValueDonutChartByIndustry.png = 250x)
 
 
