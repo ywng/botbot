@@ -5,9 +5,9 @@ Currently it has no backend stoage yet, using HTML5 Browser session to do persis
 
 ### 1. Portfolio Vis
 #### Portfolio Breakdown and Grouping (updates/min)
-![alt text](https://github.com/ywng/botbot/blob/master/screenshots/portVis.png)
+![alt text](./screenshots/portVis.png)
 #### Real-time Portfolio Value Monitoring (updates/min)
-![alt text](https://github.com/ywng/botbot/blob/master/screenshots/portValueLineChart.png)
-![alt text](https://github.com/ywng/botbot/blob/master/screenshots/portValueDonutChartByIndustry.png)
+![alt text](./screenshots/portValueLineChart.png)
+![alt text](./screenshots/portValueDonutChartByIndustry.png =250x)
 
 
