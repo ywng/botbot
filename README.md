@@ -6,8 +6,10 @@ Currently it has no backend stoage yet, using HTML5 Browser session to do persis
 
 ### 1. Portfolio Vis
 #### Portfolio Breakdown and Grouping (updates/min)
+Currently, it is loading my portfolio. It will take 1 miniute to initialise if it is the first time you visit this page.
 ![alt text](./screenshots/portVis.png)
 #### Real-time Portfolio Value Monitoring (updates/min)
+Currently, it is loading my portfolio. It will take 1 miniute to initialise if it is the first time you visit this page.
 ![alt text](./screenshots/portValueLineChart.png)
 <img src="./screenshots/portValueDonutChartByIndustry.png" width="480">
 
